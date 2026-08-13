@@ -1,0 +1,41 @@
+{
+  "id": "agents849510",
+  "agent_name": "urn:trustworthyai:nanda-demo:orchestrator",
+  "label": "SafeAI Demo Orchestrator",
+  "description": "Reference orchestrator agent demonstrating TIVM-extended AgentFacts trust posture, deployed for NANDA Trust Broker proof-of-concept",
+  "version": "0.1.0",
+  "provider": {
+    "name": "TrustworthyAI",
+    "url": "https://trustworthyai.io"
+  },
+  "endpoints": {
+    "static": ["https://nanda-agent-a.onrender.com/a2a"]
+  },
+  "capabilities": {
+    "modalities": ["text"],
+    "authentication": {
+      "methods": ["none"]
+    }
+  },
+  "skills": [
+    {
+      "id": "message-orchestration",
+      "description": "Receives and relays messages to peer agents via NANDA A2A protocol",
+      "inputModes": ["text"],
+      "outputModes": ["text"]
+    }
+  ],
+  "trustworthy_ai_tivm": {
+    "tivm_current": {
+      "risk_percent": 8.2,
+      "sl_classification": "SL0",
+      "computed_at": "2026-08-13T06:00:00Z"
+    },
+    "adversarial_bypass_rate": 0.0,
+    "trajectory_risk_trend": "stable",
+    "last_red_team": "2026-08-13T06:00:00Z",
+    "enforcement_hooks_active": ["trust_broker_gate"],
+    "trust_tier": "T1",
+    "expiry": "2026-11-13T06:00:00Z"
+  }
+}

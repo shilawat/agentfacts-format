@@ -213,3 +213,16 @@ This is an open standard for the agentic web ecosystem. Contributions, suggestio
 MIT License
 
 *Building the infrastructure for trusted, discoverable AI agents on the web.*
+### 🟣 Proposed: Live Trust Posture Extension (TIVM)
+
+An optional extension adding continuously-updated, red-team-derived trust scoring to any AgentFacts document — complementing the existing `evaluations` and `certification` blocks with a live risk model rather than a static audit snapshot.
+
+- `trustworthy_ai_tivm.tivm_current` — composite risk score (0-100) and SL0-SL5 severity classification
+- `adversarial_bypass_rate` — measured red-team attack success rate
+- `trajectory_risk_trend` — behavioral drift detection across sessions (rising/stable/declining)
+- `trust_tier` — T1-T5 assurance tier tied to mission impact
+- `expiry` — forces periodic re-attestation rather than a one-time certification
+
+See `examples/tivm-extended-agent.json` for a complete instance, generated from a live agent running on the NANDA network.
+
+Proposed by Sandeep Shilawat, author of *Trustworthy AI: Red Teaming, Risk and Architecture of Secure Intelligence*.

@@ -47,7 +47,10 @@
     },
     "provider": {
       "type": "object",
-      "required": ["name", "url"],
+      "required": [
+        "name",
+        "url"
+      ],
       "properties": {
         "name": {
           "type": "string",
@@ -66,7 +69,9 @@
     },
     "endpoints": {
       "type": "object",
-      "required": ["static"],
+      "required": [
+        "static"
+      ],
       "properties": {
         "static": {
           "type": "array",
@@ -97,7 +102,10 @@
     },
     "capabilities": {
       "type": "object",
-      "required": ["modalities", "authentication"],
+      "required": [
+        "modalities",
+        "authentication"
+      ],
       "properties": {
         "modalities": {
           "type": "array",
@@ -116,7 +124,9 @@
         },
         "authentication": {
           "type": "object",
-          "required": ["methods"],
+          "required": [
+            "methods"
+          ],
           "properties": {
             "methods": {
               "type": "array",
@@ -141,7 +151,12 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "description", "inputModes", "outputModes"],
+        "required": [
+          "id",
+          "description",
+          "inputModes",
+          "outputModes"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -275,6 +290,87 @@
           "type": "string",
           "format": "date-time",
           "description": "When certification expires"
+        }
+      }
+    },
+    "trustworthy_ai_tivm": {
+      "type": "object",
+      "description": "TIVM (Trustworthy AI Vulnerability Methodology) live trust posture extension. Complements 'evaluations' and 'certification' with continuously-updated, red-team-derived risk scoring. Proposed by TrustworthyAI.",
+      "properties": {
+        "tivm_current": {
+          "type": "object",
+          "required": [
+            "risk_percent",
+            "sl_classification",
+            "computed_at"
+          ],
+          "properties": {
+            "risk_percent": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "R_joint/5 * 100 \u2014 composite TIVM risk score"
+            },
+            "sl_classification": {
+              "type": "string",
+              "enum": [
+                "SL0",
+                "SL1",
+                "SL2",
+                "SL3",
+                "SL4",
+                "SL5"
+              ],
+              "description": "Severity Level classification derived from risk_percent"
+            },
+            "computed_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "adversarial_bypass_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of red-team attacks that succeeded in the most recent run"
+        },
+        "trajectory_risk_trend": {
+          "type": "string",
+          "enum": [
+            "rising",
+            "stable",
+            "declining"
+          ],
+          "description": "Multi-session behavioral trend (Crescendo Problem detection)"
+        },
+        "last_red_team": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of most recent adversarial assessment"
+        },
+        "enforcement_hooks_active": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Which runtime guardrails are currently live for this agent"
+        },
+        "trust_tier": {
+          "type": "string",
+          "enum": [
+            "T1",
+            "T2",
+            "T3",
+            "T4",
+            "T5"
+          ],
+          "description": "Assurance tier tied to mission impact"
+        },
+        "expiry": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Trust posture validity window \u2014 forces periodic re-attestation"
         }
       }
     }
