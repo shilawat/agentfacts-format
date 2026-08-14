@@ -5,7 +5,7 @@
   "description": "Reference orchestrator agent demonstrating TIVM-extended AgentFacts trust posture, deployed for NANDA Trust Broker proof-of-concept",
   "version": "0.1.0",
   "provider": {
-    "name": "TRUSTWORTHY AI",
+    "name": "TRUSTWORTHY AI"
   },
   "endpoints": {
     "static": ["https://nanda-agent-a.onrender.com/a2a"]
